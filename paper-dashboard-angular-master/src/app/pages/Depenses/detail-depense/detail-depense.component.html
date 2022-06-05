@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h2 class="card-title">DETAIL INFORMTION DEPENSE</h2>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>ID DEPENSE</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  disabled=""
+                  placeholder="Company"
+                  value="00012"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>TYPE DE DEPENSE</label>
+                <input
+                  disabled=""
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
+                  value="FACTURE"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">LIBELLE</label>
+                <input
+                  disabled=""
+                  type="email"
+                  class="form-control"
+                  placeholder="WOYAFAL"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>MONTANT</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  disabled=""
+                  placeholder="Username"
+                  value="50.000"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>DATE</label>
+                <input
+                  type="text"
+                  disabled=""
+                  class="form-control"
+                  placeholder="Company"
+                  value="19/09/2022"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>DESCRIPTION</label>
+                <input
+                  type="text"
+                  disabled=""
+                  class="form-control"
+                  placeholder="Last Name"
+                  value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam voluptatum sit, possimus facilis quidem"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>ANNULER</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+      VALIDER
+    </button>
+  </mat-dialog-actions>
+</div>

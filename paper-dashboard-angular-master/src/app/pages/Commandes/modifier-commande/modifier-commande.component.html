@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h2 class="card-title">MODIFIER INFORMTION COMMANDE CLIENT</h2>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>ID COMMANDE</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company"
+                  value="00012"
+                  disabled=""
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>PRENOM</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
+                  value="Seydina Issa "
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">NOM</label>
+                <input type="email" class="form-control" placeholder="SARR" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>NUMERO COMMANDE</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Username"
+                  value="98234567"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>MODEL</label>
+                <!-- <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company"
+                  value="Tandance Korité"
+                /> -->
+                <select name="model" id="model" class="form-control">
+                  <option value="">MODE MAGAL</option>
+                  <option value="">MODE GAMOU</option>
+                  <option value="">TANDANCE TABASKI</option>
+                  <option value="">TANDANCE KORITE</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>PRIX</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  value="25.OOfr"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>AVANCE</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Company"
+                  value="10.000"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>RELICAT</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  value="150.OOfr"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">
+                MODIFIER COMMANDE
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>ANNULER</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+      VALIDER
+    </button>
+  </mat-dialog-actions>
+</div>

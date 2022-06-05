@@ -1,0 +1,158 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header">
+          <h2 class="card-title">NOUVEAU CLIENT</h2>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>PRENOM</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi le Prenom"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>NOM</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi le Nom"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">TELEPHONE</label>
+                  <input type="email" class="form-control" placeholder="veuiller saisi le Numero Téléphone" />
+                </div>
+              </div>
+              <div class="col-md-6">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>EPAULE CLIENT</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi l'epaule"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>HANCHE CLIENT</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi taille Hanche"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>MANCHE CLIENT</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi la Manche"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>COU CLIENT</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi le Cou"
+                    value="127"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>LONGUEUR BRAS CLIENT</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi le Longueur bras"
+                  />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>LONGUEUR PANTALON CLIENT</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="veuiller saisi longueur pantalon"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>MANCHE POITRINE</label>
+                  <input type="number" class="form-control" placeholder="veuiller saisi la Manche Poitrine" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>TOUR DE BRAS CLIENT</label>
+                  <input type="text" class="form-control" placeholder="veuiller saisi le Tour du bras" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>TOUR DE TAILLE CLIENT</label>
+                  <input type="number" class="form-control" placeholder="veuiller saisi le Tour de taille" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CUISSE</label>
+                  <input type="number" class="form-control" placeholder="veuiller saisi la taille Cuisse" />
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>CEINTURE CLIENT</label>
+                  <input type="text" class="form-control" placeholder="veuiller saisi la Ceinture" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round">
+                  ENREGISTRER
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>ANNULER</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+        APPLIQUER
+      </button>
+    </mat-dialog-actions>
+  </div>
+  
