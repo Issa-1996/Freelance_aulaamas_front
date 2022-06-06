@@ -108,13 +108,12 @@ export class DashboardComponent implements OnInit{
             pointRadius: 0,
             pointHoverRadius: 0,
             backgroundColor: [
-              '#e3e3e3',
-              '#4acccd',
-              '#fcc468',
-              '#ef8157'
+              '#4acccd', //ACHAT
+              '#fcc468', //BENEFICE
+              '#ef8157'  //DEPENSE
             ],
             borderWidth: 0,
-            data: [342, 480, 530, 120]
+            data: [450, 100, 500]
           }]
         },
 

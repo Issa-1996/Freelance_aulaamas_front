@@ -1,22 +1,34 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
+import { ConnexionComponent } from "./connexion/connexion.component";
+import { ContainerComponent } from "./container/container.component";
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 
 export const AppRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  }, {
-    path: '',
-    component: AdminLayoutComponent,
-    children: [
-        {
-      path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(x => x.AdminLayoutModule)
-  }]},
+    path: "",
+    redirectTo: "connexion",
+    pathMatch: "full",
+  },
   {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
-]
+    path: "connexion",
+    component: ConnexionComponent
+  },
+  {
+    path: "container",
+    component: ContainerComponent,
+    children: [
+      {
+        path: "",
+        loadChildren: () =>
+          import("./layouts/admin-layout/admin-layout.module").then(
+            (x) => x.AdminLayoutModule
+          ),
+      },
+    ],
+  },
+  {
+    path: "**",
+    redirectTo: "connexion",
+  },
+];

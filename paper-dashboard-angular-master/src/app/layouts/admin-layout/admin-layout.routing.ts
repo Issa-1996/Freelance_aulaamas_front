@@ -12,18 +12,19 @@ import { GestionClientsComponent } from 'app/pages/Clients/gestion-clients/gesti
 import { GestionCommandeComponent } from 'app/pages/Commandes/gestion-commande/gestion-commande.component';
 import { GestionDepenseComponent } from 'app/pages/Depenses/gestion-depense/gestion-depense.component';
 import { GestionModelComponent } from 'app/pages/Models/gestion-model/gestion-model.component';
+import { ConnexionComponent } from 'app/connexion/connexion.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user',           component: UserComponent },
-    { path: 'table',          component: TableComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
+    // { path: 'user',           component: UserComponent },
+    // { path: 'table',          component: TableComponent },
+    // { path: 'typography',     component: TypographyComponent },
+    // { path: 'icons',          component: IconsComponent },
+    // { path: 'maps',           component: MapsComponent },
+    // { path: 'notifications',  component: NotificationsComponent },
+    // { path: 'upgrade',        component: UpgradeComponent },
     { path: 'client',         component: GestionClientsComponent },
     { path: 'commande',       component: GestionCommandeComponent},
     { path: 'depense',       component: GestionDepenseComponent},
-    { path: 'model',       component: GestionModelComponent}
+    { path: 'model',       component: GestionModelComponent},
 ];

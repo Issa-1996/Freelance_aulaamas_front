@@ -38,6 +38,8 @@ import { NouveauModelComponent } from './pages/Models/nouveau-model/nouveau-mode
 import { DetailModelComponent } from './pages/Models/detail-model/detail-model.component';
 import { ModifierModelComponent } from './pages/Models/modifier-model/modifier-model.component';
 import { GestionModelComponent } from './pages/Models/gestion-model/gestion-model.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { ContainerComponent } from './container/container.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { GestionModelComponent } from './pages/Models/gestion-model/gestion-mode
     NouveauModelComponent,
     DetailModelComponent,
     ModifierModelComponent,
-    GestionModelComponent
+    GestionModelComponent,
+    ConnexionComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserAnimationsModule,
