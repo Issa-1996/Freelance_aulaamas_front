@@ -40,6 +40,7 @@ import { ModifierModelComponent } from './pages/Models/modifier-model/modifier-m
 import { GestionModelComponent } from './pages/Models/gestion-model/gestion-model.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { ContainerComponent } from './container/container.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ContainerComponent } from './container/container.component';
     ModifierModelComponent,
     GestionModelComponent,
     ConnexionComponent,
-    ContainerComponent
+    ContainerComponent,
+    MenuComponent
   ],
   imports: [
     BrowserAnimationsModule,
