@@ -22,7 +22,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AjoutClientComponent } from './pages/Clients/ajout-client/ajout-client.component';
 import { ModifierClientComponent } from './pages/Clients/modifier-client/modifier-client.component';
 import { DetailClientComponent } from './pages/Clients/detail-client/detail-client.component';
@@ -41,6 +41,9 @@ import { GestionModelComponent } from './pages/Models/gestion-model/gestion-mode
 import { ConnexionComponent } from './connexion/connexion.component';
 import { ContainerComponent } from './container/container.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { AuthService } from "./Services/auth.service";
+import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
+import { TokeInterceptorService } from "./Services/toke-interceptor.service";
 
 
 @NgModule({
@@ -64,7 +67,7 @@ import { MenuComponent } from './pages/menu/menu.component';
     GestionModelComponent,
     ConnexionComponent,
     ContainerComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -89,9 +92,19 @@ import { MenuComponent } from './pages/menu/menu.component';
     MatSelectModule,
     MatTooltipModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    JwtHelperService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    TokeInterceptorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokeInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

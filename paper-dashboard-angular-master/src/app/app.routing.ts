@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { AuthGuard } from "./auth.guard";
 import { ConnexionComponent } from "./connexion/connexion.component";
 import { ContainerComponent } from "./container/container.component";
 
@@ -17,6 +18,7 @@ export const AppRoutes: Routes = [
   {
     path: "container",
     component: ContainerComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: "",

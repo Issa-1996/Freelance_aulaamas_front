@@ -1,20 +1,37 @@
 <div class="container">
   <div class="screen">
     <div class="screen__content">
-      <form class="login">
+      <form class="login" [formGroup]="addForm">
+        <span style="color: red; font-size: 12px; margin-left: -5%;" *ngIf="erreur != ''">
+          {{ erreur }}
+        </span>
         <div class="login__field">
           <i class="login__icon fas fa-user"></i>
           <input
             type="text"
             class="login__input"
             placeholder="Email / N° Téléphone"
+            formControlName="username"
+            name="username"
           />
         </div>
+        <span style="color: red; font-size: 12px" *ngIf="erreurUsername != ''">
+          {{ erreurUsername }}
+        </span>
         <div class="login__field">
           <i class="login__icon fas fa-lock"></i>
-          <input type="password" class="login__input" placeholder="Mot de Passe" />
+          <input
+            type="password"
+            class="login__input"
+            placeholder="Mot de Passe"
+            formControlName="password"
+            name="password"
+          />
         </div>
-        <button class="button login__submit" routerLink="/container/dashboard">
+        <span style="color: red; font-size: 12px" *ngIf="erreurPassword != ''">
+          {{ erreurPassword }}
+        </span>
+        <button class="button login__submit" (click)="onSignIn()">
           <span class="button__text">CONNEXION</span>
           <i class="button__icon fas fa-chevron-right"></i>
         </button>
