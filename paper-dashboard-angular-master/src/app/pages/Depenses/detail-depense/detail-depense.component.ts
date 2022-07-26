@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TransferDataService } from 'app/Services/transfer-data.service';
 
 @Component({
   selector: 'detail-depense',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailDepenseComponent implements OnInit {
 
-  constructor() { }
+  addForm: FormGroup;
+  constructor(
+    private formBuilder: FormBuilder,
+    private transferData: TransferDataService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
+    this.addForm = this.formBuilder.group({
+      id:[""],
+      type: [""],
+      libelle: [""],
+      prix: [""],
+      description: [""],
+      date: [""],
+    });
+    this.addForm.patchValue(this.transferData.getData());
   }
 
 }

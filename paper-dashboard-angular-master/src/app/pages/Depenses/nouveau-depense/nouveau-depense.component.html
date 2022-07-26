@@ -5,29 +5,47 @@
         <h2 class="card-title">NOUVEAU DEPENSE</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
+          <div class="alert alert-danger" role="alert" *ngIf="erreur != ''">
+            {{ erreur }}
+          </div>
+          <br />
+          <div class="alert alert-success" role="alert" *ngIf="success != ''">
+            {{ success }}
+          </div>
+          <br />
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label>TYPE DE DEPENSE</label>
-                <!-- <input
-                  type="text"
-                  class="form-control"
-                /> -->
-                <select name="type" id="type" class="form-control">
-                  <option value="" disabled selected>Choisi le Type de Dépense</option>
-                  <option value="">FACTURE</option>
-                  <option value="">SALAIRE</option>
-                  <option value="">FOURNITURE</option>
-                  <option value="">LOCATION</option>
+                <select formControlName="type" class="form-control">
+                  <option disabled selected>
+                    Choisi le Type de Dépense
+                  </option>
+                  <option value="FACTURE">FACTURE</option>
+                  <option value="SALAIRE">SALAIRE</option>
+                  <option value="FOURNITURE">FOURNITURE</option>
+                  <option value="LOCATION">LOCATION</option>
                 </select>
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurtype != ''"
+                >
+                  {{ erreurtype }}
+                </span><br>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
                 <label for="exampleInputEmail1">LIBELLE</label>
-                <input type="email" class="form-control" />
+                <input type="text" class="form-control" formControlName="libelle"/>
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurlibelle != ''"
+                >
+                  {{ erreurlibelle }}
+                </span><br>
               </div>
             </div>
           </div>
@@ -35,13 +53,31 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>MONTANT</label>
-                <input type="number" class="form-control" />
+                <input type="text" class="form-control" formControlName="prix" />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurmontant != ''"
+                >
+                  {{ erreurmontant }}
+                </span><br>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>DATE</label>
-                <input type="date" class="form-control" min="2022-01-01" max="2022-12-31"/>
+                <input
+                  type="date"
+                  formControlName="date"
+                  class="form-control"
+                  min="2022-01-01"
+                  max="2022-12-31"
+                />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurdate != ''"
+                >
+                  {{ erreurdate }}
+                </span><br>
               </div>
             </div>
           </div>
@@ -49,16 +85,10 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>DESCRIPTION</label>
-                <!-- <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name"
-                  value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam voluptatum sit, possimus facilis quidem"
-                /> -->
                 <textarea
                   class="form-control"
                   name="description"
-                  id="description"
+                  formControlName="description"
                   cols="30"
                   rows="10"
                 ></textarea>
@@ -67,7 +97,7 @@
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">
+              <button type="submit" class="btn btn-primary btn-round" (click)="ajoutNouveauDepense()">
                 ENREGISTRER
               </button>
             </div>

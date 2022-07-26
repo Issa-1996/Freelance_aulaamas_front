@@ -5,16 +5,29 @@
         <h2 class="card-title">NOUVEAU CLIENT</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
+          <div class="alert alert-danger" role="alert" *ngIf="erreur!=''">
+            {{ erreur }}
+          </div><br>
+          <div class="alert alert-success" role="alert" *ngIf="success!=''">
+            {{ success }}
+          </div><br>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label>PRENOM</label>
                 <input
                   type="text"
+                  name="prenom"
+                  formControlName="prenom"
                   class="form-control"
-                  placeholder="veuiller saisi le Prenom"
                 />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurprenom != ''"
+                >
+                  {{ erreurprenom }}
+                </span><br>
               </div>
             </div>
             <div class="col-md-6">
@@ -22,9 +35,16 @@
                 <label>NOM</label>
                 <input
                   type="text"
+                  name="nom"
+                  formControlName="nom"
                   class="form-control"
-                  placeholder="veuiller saisi le Nom"
                 />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurnom != ''"
+                >
+                  {{ erreurnom }}
+                </span><br>
               </div>
             </div>
           </div>
@@ -35,17 +55,25 @@
                 <input
                   type="email"
                   class="form-control"
-                  placeholder="veuiller saisi le Numero Téléphone"
+                  name="telephone"
+                  formControlName="telephone"
                 />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurtelephone != ''"
+                >
+                  {{ erreurtelephone }}
+                </span><br>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="exampleInputEmail1">POIGNET MACHET DU CLIENT</label>
                 <input
-                  type="email"
+                  type="text"
+                  name="poignetMachetClient"
+                  formControlName="poignetMachetClient"
                   class="form-control"
-                  placeholder="veuiller saisi le Numero Téléphone"
                 />
               </div>
             </div>
@@ -56,8 +84,9 @@
                 <label>EPAULE CLIENT</label>
                 <input
                   type="text"
+                  name="epauleClient"
+                  formControlName="epauleClient"
                   class="form-control"
-                  placeholder="veuiller saisi l'epaule"
                 />
               </div>
             </div>
@@ -66,8 +95,9 @@
                 <label>HANCHE CLIENT</label>
                 <input
                   type="text"
+                  name="hancheClient"
+                  formControlName="hancheClient"
                   class="form-control"
-                  placeholder="veuiller saisi taille Hanche"
                 />
               </div>
             </div>
@@ -76,8 +106,9 @@
                 <label>MANCHE CLIENT</label>
                 <input
                   type="text"
+                  name="mancheClient"
+                  formControlName="mancheClient"
                   class="form-control"
-                  placeholder="veuiller saisi la Manche"
                 />
               </div>
             </div>
@@ -88,8 +119,9 @@
                 <label>COU CLIENT</label>
                 <input
                   type="text"
+                  name="couClient"
+                  formControlName="couClient"
                   class="form-control"
-                  placeholder="veuiller saisi le Cou"
                 />
               </div>
             </div>
@@ -98,8 +130,9 @@
                 <label>LONGUEUR BRAS CLIENT</label>
                 <input
                   type="text"
+                  name="longueurBrasClient"
+                  formControlName="longueurBrasClient"
                   class="form-control"
-                  placeholder="veuiller saisi le Longueur bras"
                 />
               </div>
             </div>
@@ -108,8 +141,9 @@
                 <label>LONGUEUR PANTALON CLIENT</label>
                 <input
                   type="text"
+                  name="longueurPantalonClient"
+                  formControlName="longueurPantalonClient"
                   class="form-control"
-                  placeholder="veuiller saisi longueur pantalon"
                 />
               </div>
             </div>
@@ -119,9 +153,10 @@
               <div class="form-group">
                 <label>MANCHE POITRINE</label>
                 <input
-                  type="number"
+                  type="text"
+                  name="mancheProtrineClient"
+                  formControlName="mancheProtrineClient"
                   class="form-control"
-                  placeholder="veuiller saisi la Manche Poitrine"
                 />
               </div>
             </div>
@@ -130,8 +165,9 @@
                 <label>TOUR DE BRAS CLIENT</label>
                 <input
                   type="text"
+                  name="tourDeBrasClient"
+                  formControlName="tourDeBrasClient"
                   class="form-control"
-                  placeholder="veuiller saisi le Tour du bras"
                 />
               </div>
             </div>
@@ -139,9 +175,10 @@
               <div class="form-group">
                 <label>TOUR DE TAILLE CLIENT</label>
                 <input
-                  type="number"
+                  type="text"
+                  name="tourDeTailleClient"
+                  formControlName="tourDeTailleClient"
                   class="form-control"
-                  placeholder="veuiller saisi le Tour de taille"
                 />
               </div>
             </div>
@@ -151,9 +188,10 @@
               <div class="form-group">
                 <label>CUISSE</label>
                 <input
-                  type="number"
+                  type="text"
+                  name="cuisseClient"
+                  formControlName="cuisseClient"
                   class="form-control"
-                  placeholder="veuiller saisi la taille Cuisse"
                 />
               </div>
             </div>
@@ -162,8 +200,9 @@
                 <label>CEINTURE CLIENT</label>
                 <input
                   type="text"
+                  name="ceintureClient"
+                  formControlName="ceintureClient"
                   class="form-control"
-                  placeholder="veuiller saisi la Ceinture"
                 />
               </div>
             </div>
@@ -172,15 +211,29 @@
                 <label>BAS CLIENT</label>
                 <input
                   type="text"
+                  name="basClient"
+                  formControlName="basClient"
                   class="form-control"
-                  placeholder="veuiller saisi la Ceinture"
                 />
               </div>
             </div>
           </div>
           <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>BRAS CLIENT</label>
+                <input
+                  type="text"
+                  name="BrasClient"
+                  formControlName="BrasClient"
+                  class="form-control"
+                />
+              </div> 
+            </div>
+          </div>
+          <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">
+              <button type="submit" name="submit" class="btn btn-primary" (click)="ajoutNouveauClient()">
                 ENREGISTRER
               </button>
             </div>

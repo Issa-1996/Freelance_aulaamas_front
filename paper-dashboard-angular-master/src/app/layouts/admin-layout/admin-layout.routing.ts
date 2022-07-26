@@ -16,7 +16,7 @@ import { ConnexionComponent } from 'app/connexion/connexion.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
-    // { path: 'user',           component: UserComponent },
+    { path: 'user',           component: UserComponent },
     // { path: 'table',          component: TableComponent },
     // { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },

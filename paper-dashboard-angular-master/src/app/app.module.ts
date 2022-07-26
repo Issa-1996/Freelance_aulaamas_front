@@ -44,6 +44,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { AuthService } from "./Services/auth.service";
 import { JwtHelperService, JWT_OPTIONS } from "@auth0/angular-jwt";
 import { TokeInterceptorService } from "./Services/toke-interceptor.service";
+import { TransferDataService } from "./Services/transfer-data.service";
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { TokeInterceptorService } from "./Services/toke-interceptor.service";
   providers: [
     AuthService,
     JwtHelperService,
+    TransferDataService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     TokeInterceptorService,
     {

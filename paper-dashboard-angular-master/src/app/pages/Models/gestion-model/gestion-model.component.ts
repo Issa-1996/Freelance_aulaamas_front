@@ -1,99 +1,85 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import { DetailModelComponent } from '../detail-model/detail-model.component';
-import { ModifierModelComponent } from '../modifier-model/modifier-model.component';
-import { NouveauModelComponent } from '../nouveau-model/nouveau-model.component';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { ModelModele } from "app/Modeles/ModelModele";
+import { BehavioSubjetService } from "app/Services/behavio-subjet.service";
+import { MethodeModelService } from "app/Services/methode-model.service";
+import { TransferDataService } from "app/Services/transfer-data.service";
+import { DetailModelComponent } from "../detail-model/detail-model.component";
+import { ModifierModelComponent } from "../modifier-model/modifier-model.component";
+import { NouveauModelComponent } from "../nouveau-model/nouveau-model.component";
 @Component({
-  selector: 'gestion-model',
-  templateUrl: './gestion-model.component.html',
-  styleUrls: ['./gestion-model.component.css']
+  selector: "gestion-model",
+  templateUrl: "./gestion-model.component.html",
+  styleUrls: ["./gestion-model.component.css"],
 })
-export class GestionModelComponent implements AfterViewInit {
-  
+export class GestionModelComponent implements AfterViewInit, OnInit {
 
-  update() {
-    const dialogRef = this.dialog.open(ModifierModelComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  dataModel: ModelModele[] = [];
+  public role: any[];
+  helper = new JwtHelperService();
+  dataSource = new MatTableDataSource<ModelModele>([]);
+  ngOnInit(): void {
+    this.listeModels();
   }
-  detail() {
+  constructor(
+    public dialog: MatDialog,
+    private methodeModel: MethodeModelService,
+    private behavioSubjet: BehavioSubjetService,
+    private transferData: TransferDataService,
+  ) {}
+  detailInfoModel(element: ModelModele) {
     const dialogRef = this.dialog.open(DetailModelComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    this.transferData.setData(element);
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
-  ajout() {
+  modifierInfoModel(element: ModelModele) {
+    const dialogRef = this.dialog.open(ModifierModelComponent);
+
+    this.transferData.setData(element);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  ajoutNouveauModel() {
     const dialogRef = this.dialog.open(NouveauModelComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
-  displayedColumns: string[] = ['id', 'libelle', 'prix', 'description','images', 'detail', 'modifier'];
-  dataSource: MatTableDataSource<UserData>;
+  listeModels() {
+    this.methodeModel.getAllModels().subscribe((data) => {
+      this.dataModel = data["hydra:member"];
+      this.behavioSubjet.getValue().subscribe((d) => {
+        if (d.length != 0) {
+          this.dataModel.push(d);
+        }
+      });
+      this.dataSource = new MatTableDataSource<ModelModele>(this.dataModel);
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  displayedColumns: string[] = [
+    "id",
+    "libelle",
+    "prix",
+    "image",
+    "cathegorie",
+    "detail",
+    "modifier",
+  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  constructor(public dialog: MatDialog) {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -102,20 +88,4 @@ export class GestionModelComponent implements AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 10000000).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
 }

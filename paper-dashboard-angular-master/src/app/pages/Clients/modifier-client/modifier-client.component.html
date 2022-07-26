@@ -5,47 +5,75 @@
         <h2 class="card-title">MODIFIER INFORMATION CLIENT</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
+          <div class="alert alert-danger" role="alert" *ngIf="erreur!=''">
+            {{ erreur }}
+          </div><br>
+          <div class="alert alert-success" role="alert" *ngIf="success!=''">
+            {{ success }}
+          </div><br>
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>ID CLIENT</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  disabled=""
-                  placeholder="Company"
-                  value="1234567890"
-                />
-              </div>
-            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>PRENOM</label>
                 <input
                   type="text"
+                  name="prenom"
+                  formControlName="prenom"
                   class="form-control"
-                  placeholder="Username"
-                  value="Seydina Issa "
                 />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurprenom != ''"
+                >
+                  {{ erreurprenom }}
+                </span><br>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>NOM</label>
+                <input
+                  type="text"
+                  name="nom"
+                  formControlName="nom"
+                  class="form-control"
+                />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurnom != ''"
+                >
+                  {{ erreurnom }}
+                </span><br>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInputEmail1">NOM</label>
-                <input type="email" class="form-control" placeholder="SARR" />
+                <label for="exampleInputEmail1">TELEPHONE</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="telephone"
+                  formControlName="telephone"
+                />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurtelephone != ''"
+                >
+                  {{ erreurtelephone }}
+                </span><br>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>TELEPHONE</label>
+                <label for="exampleInputEmail1">POIGNET MACHET DU CLIENT</label>
                 <input
                   type="text"
+                  name="poignetMachetClient"
+                  formControlName="poignetMachetClient"
                   class="form-control"
-                  placeholder="Username"
-                  value="779455666"
                 />
               </div>
             </div>
@@ -56,9 +84,9 @@
                 <label>EPAULE CLIENT</label>
                 <input
                   type="text"
+                  name="epauleClient"
+                  formControlName="epauleClient"
                   class="form-control"
-                  placeholder="Company"
-                  value="75"
                 />
               </div>
             </div>
@@ -67,9 +95,9 @@
                 <label>HANCHE CLIENT</label>
                 <input
                   type="text"
+                  name="hancheClient"
+                  formControlName="hancheClient"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="130"
                 />
               </div>
             </div>
@@ -78,9 +106,9 @@
                 <label>MANCHE CLIENT</label>
                 <input
                   type="text"
+                  name="mancheClient"
+                  formControlName="mancheClient"
                   class="form-control"
-                  placeholder="Home Address"
-                  value="230"
                 />
               </div>
             </div>
@@ -91,9 +119,9 @@
                 <label>COU CLIENT</label>
                 <input
                   type="text"
+                  name="couClient"
+                  formControlName="couClient"
                   class="form-control"
-                  placeholder="Home Address"
-                  value="127"
                 />
               </div>
             </div>
@@ -102,9 +130,9 @@
                 <label>LONGUEUR BRAS CLIENT</label>
                 <input
                   type="text"
+                  name="longueurBrasClient"
+                  formControlName="longueurBrasClient"
                   class="form-control"
-                  placeholder="City"
-                  value="35"
                 />
               </div>
             </div>
@@ -113,9 +141,9 @@
                 <label>LONGUEUR PANTALON CLIENT</label>
                 <input
                   type="text"
+                  name="longueurPantalonClient"
+                  formControlName="longueurPantalonClient"
                   class="form-control"
-                  placeholder="Country"
-                  value="110"
                 />
               </div>
             </div>
@@ -124,19 +152,34 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>MANCHE POITRINE</label>
-                <input type="number" class="form-control" placeholder="360" />
+                <input
+                  type="text"
+                  name="mancheProtrineClient"
+                  formControlName="mancheProtrineClient"
+                  class="form-control"
+                />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>TOUR DE BRAS CLIENT</label>
-                <input type="text" class="form-control" />
+                <input
+                  type="text"
+                  name="tourDeBrasClient"
+                  formControlName="tourDeBrasClient"
+                  class="form-control"
+                />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>TOUR DE TAILLE CLIENT</label>
-                <input type="number" class="form-control" placeholder="26" />
+                <input
+                  type="text"
+                  name="tourDeTailleClient"
+                  formControlName="tourDeTailleClient"
+                  class="form-control"
+                />
               </div>
             </div>
           </div>
@@ -144,26 +187,54 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>CUISSE</label>
-                <input type="number" class="form-control" placeholder="317" />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>TOUR DE BRAS CLIENT</label>
-                <input type="text" class="form-control" value="59" />
+                <input
+                  type="text"
+                  name="cuisseClient"
+                  formControlName="cuisseClient"
+                  class="form-control"
+                />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>CEINTURE CLIENT</label>
-                <input type="text" class="form-control" value="209" />
+                <input
+                  type="text"
+                  name="ceintureClient"
+                  formControlName="ceintureClient"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>BAS CLIENT</label>
+                <input
+                  type="text"
+                  name="basClient"
+                  formControlName="basClient"
+                  class="form-control"
+                />
               </div>
             </div>
           </div>
           <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>BRAS CLIENT</label>
+                <input
+                  type="text"
+                  name="BrasClient"
+                  formControlName="BrasClient"
+                  class="form-control"
+                />
+              </div> 
+            </div>
+          </div>
+          <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">
-                MODIFIER CLIENT
+              <button type="submit" name="submit" class="btn btn-primary" (click)="modifierClient()">
+                MODIFIER
               </button>
             </div>
           </div>

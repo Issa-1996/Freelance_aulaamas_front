@@ -5,29 +5,27 @@
         <h2 class="card-title">DETAIL INFORMATION CLIENT</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>ID CLIENT</label>
+                <label>PRENOM</label>
                 <input
                   type="text"
+                  disabled
+                  formControlName="prenom"
                   class="form-control"
-                  disabled=""
-                  placeholder="Company"
-                  value="1234567890"
                 />
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>PRENOM</label>
+                <label>NOM</label>
                 <input
-                  disabled=""
                   type="text"
+                  disabled
+                  formControlName="nom"
                   class="form-control"
-                  placeholder="Username"
-                  value="Seydina Issa "
                 />
               </div>
             </div>
@@ -35,24 +33,23 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInputEmail1">NOM</label>
+                <label for="exampleInputEmail1">TELEPHONE</label>
                 <input
-                  disabled=""
                   type="email"
                   class="form-control"
-                  placeholder="SARR"
+                  disabled
+                  formControlName="telephone"
                 />
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>TELEPHONE</label>
+                <label for="exampleInputEmail1">POIGNET MACHET DU CLIENT</label>
                 <input
                   type="text"
+                  disabled
+                  formControlName="poignetMachetClient"
                   class="form-control"
-                  disabled=""
-                  placeholder="Username"
-                  value="779455666"
                 />
               </div>
             </div>
@@ -63,10 +60,9 @@
                 <label>EPAULE CLIENT</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="epauleClient"
                   class="form-control"
-                  placeholder="Company"
-                  value="75"
                 />
               </div>
             </div>
@@ -75,10 +71,9 @@
                 <label>HANCHE CLIENT</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="hancheClient"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="130"
                 />
               </div>
             </div>
@@ -87,10 +82,9 @@
                 <label>MANCHE CLIENT</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="mancheClient"
                   class="form-control"
-                  placeholder="Home Address"
-                  value="230"
                 />
               </div>
             </div>
@@ -101,10 +95,9 @@
                 <label>COU CLIENT</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="couClient"
                   class="form-control"
-                  placeholder="Home Address"
-                  value="127"
                 />
               </div>
             </div>
@@ -113,10 +106,9 @@
                 <label>LONGUEUR BRAS CLIENT</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="longueurBrasClient"
                   class="form-control"
-                  placeholder="City"
-                  value="35"
                 />
               </div>
             </div>
@@ -125,10 +117,9 @@
                 <label>LONGUEUR PANTALON CLIENT</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="longueurPantalonClient"
                   class="form-control"
-                  placeholder="Country"
-                  value="110"
                 />
               </div>
             </div>
@@ -138,27 +129,32 @@
               <div class="form-group">
                 <label>MANCHE POITRINE</label>
                 <input
-                  disabled=""
-                  type="number"
+                  type="text"
+                  disabled
+                  formControlName="mancheProtrineClient"
                   class="form-control"
-                  placeholder="360"
                 />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>TOUR DE BRAS CLIENT</label>
-                <input type="text" disabled="" class="form-control" />
+                <input
+                  type="text"
+                  disabled
+                  formControlName="tourDeBrasClient"
+                  class="form-control"
+                />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>TOUR DE TAILLE CLIENT</label>
                 <input
-                  disabled=""
-                  type="number"
+                  type="text"
+                  disabled
+                  formControlName="tourDeTailleClient"
                   class="form-control"
-                  placeholder="26"
                 />
               </div>
             </div>
@@ -168,21 +164,10 @@
               <div class="form-group">
                 <label>CUISSE</label>
                 <input
-                  disabled=""
-                  type="number"
-                  class="form-control"
-                  placeholder="317"
-                />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>TOUR DE BRAS CLIENT</label>
-                <input
-                  disabled=""
                   type="text"
+                  disabled
+                  formControlName="cuisseClient"
                   class="form-control"
-                  value="59"
                 />
               </div>
             </div>
@@ -190,10 +175,21 @@
               <div class="form-group">
                 <label>CEINTURE CLIENT</label>
                 <input
-                  disabled=""
                   type="text"
+                  disabled
+                  formControlName="ceintureClient"
                   class="form-control"
-                  value="209"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>BAS CLIENT</label>
+                <input
+                  type="text"
+                  disabled
+                  formControlName="basClient"
+                  class="form-control"
                 />
               </div>
             </div>
@@ -201,27 +197,23 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>POIGNET MACHET</label>
+                <label>BRAS CLIENT</label>
                 <input
-                  disabled=""
-                  type="number"
+                  type="text"
+                  disabled
+                  formControlName="BrasClient"
                   class="form-control"
-                  placeholder="317"
                 />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>BAS</label>
-                <input
-                  disabled=""
-                  type="number"
-                  class="form-control"
-                  placeholder="317"
-                />
-              </div>
+              </div> 
             </div>
           </div>
+          <!-- <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" name="submit" class="btn btn-primary" (click)="modifierClient()">
+                MODIFIER
+              </button>
+            </div>
+          </div> -->
         </form>
       </div>
     </div>

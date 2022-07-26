@@ -5,54 +5,49 @@
         <h2 class="card-title">DETAIL INFORMTION COMMANDE CLIENT</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>ID COMMANDE</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  disabled=""
-                  placeholder="Company"
-                  value="00012"
-                />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>PRENOM</label>
-                <input
-                  disabled=""
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  value="Seydina Issa "
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="exampleInputEmail1">NOM</label>
-                <input
-                  disabled=""
-                  type="email"
-                  class="form-control"
-                  placeholder="SARR"
-                />
-              </div>
-            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>NUMERO COMMANDE</label>
                 <input
                   type="text"
                   class="form-control"
-                  disabled=""
-                  placeholder="Username"
-                  value="98234567"
+                  formControlName="numeroCommande"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>TYPE DE COMMANDE</label>
+                <select formControlName="typeCommande" disabled class="form-control">
+                  <option value="" selected disabled>CHOISIR LE TYPE</option>
+                  <option value="ACHAT">ACHAT SUR LA BOUTIQUE</option>
+                  <option value="COMMANDE">COMMANDE SUR MESURE</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>CLIENT</label>
+                <select disabled class="form-control" formControlName="user">
+                  <option selected *ngFor="let user of dataClient" value="/api/aulaamas/users/{{ user.id }}">
+                    {{ user.prenom }} {{ user.nom }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exampleInputEmail1">LIBELLE DE LA COMMANDE</label>
+                <input
+                  type="text"
+                  disabled
+                  class="form-control"
+                  formControlName="nomCommande"
                 />
               </div>
             </div>
@@ -60,51 +55,72 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Type et Taille du Tissu</label>
-                <input
-                  type="text"
-                  disabled=""
+                <label>TYPE DE TISSU</label>
+                <select
                   class="form-control"
-                  placeholder="Company"
-                  value=" 12m Bazin riche"
-                />
+                  disabled
+                  formControlName="typeDeTissuClient"
+                >
+                  <option value="">CHOISIR TYPE DE TISSU</option>
+                  <option value="wax">WAX</option>
+                  <option value="bazin">BAZIN</option>
+                </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>COULEUR</label>
+                <label>COULEUR DE TISSU</label>
                 <input
+                disabled
                   type="text"
-                  disabled=""
+                  formControlName="couleurTissuClient"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="BLAN"
                 />
               </div>
             </div>
           </div>
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>TAILLE DU TISSU</label>
+                <input
+                  type="text"
+                  disabled
+                  formControlName="tailleTissuClient"
+                  class="form-control"
+                />
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>MODEL</label>
-                <input
-                  type="text"
-                  disabled=""
-                  class="form-control"
-                  placeholder="Company"
-                  value="Tandance Korité"
-                />
+                <select formControlName="model" disabled class="form-control">
+                  <option disabled>CHOISIR</option>
+                  <option selected *ngFor="let model of dataModel" value="/api/aulaamas/models/{{model.id}}">{{model.libelle}}</option>
+                </select>
               </div>
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label>PRIX</label>
                 <input
                   type="text"
-                  disabled=""
+                  disabled
+                  formControlName="prix"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="130.OOfr"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>AVANCE</label>
+                <input
+                  type="text"
+                  disabled
+                  class="form-control"
+                  formControlName="avance"
                 />
               </div>
             </div>
@@ -112,25 +128,23 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>AVANCE</label>
+                <label>RELICAT</label>
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Company"
-                  value="10.000"
                   disabled
+                  class="form-control"
+                  formControlName="relicat"
                 />
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>RELICAT</label>
+                <label>DATE DE LA COMMANDE</label>
                 <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Last Name"
-                  value="150.OOfr"
+                  type="date"
                   disabled
+                  class="form-control"
+                  formControlName="dateCommande"
                 />
               </div>
             </div>

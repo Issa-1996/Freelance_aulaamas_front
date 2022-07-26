@@ -5,7 +5,13 @@
         <h2 class="card-title">NOUVEAU COMMANDE CLIENT</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
+          <div class="alert alert-danger" role="alert" *ngIf="erreur!=''">
+            {{ erreur }}
+          </div><br>
+          <div class="alert alert-success" role="alert" *ngIf="success!=''">
+            {{ success }}
+          </div><br>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -13,110 +19,183 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Company"
-                  value="00012"
+                  formControlName="numeroCommande"
                 />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurnumeroCommande != ''"
+                >
+                  {{ erreurnumeroCommande }}
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>TYPE DE COMMANDE</label>
+                <select formControlName="typeCommande" class="form-control">
+                  <option value="" selected disabled>CHOISIR LE TYPE</option>
+                  <option value="ACHAT">ACHAT SUR LA BOUTIQUE</option>
+                  <option value="COMMANDE">COMMANDE SUR MESURE</option>
+                </select>
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurtypeCommande != ''"
+                >
+                  {{ erreurtypeCommande }}
+                </span>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>PRENOM</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  value="Seydina Issa "
-                />
+                <label>CLIENT</label>
+                <select class="form-control" formControlName="user">
+                  <option value="">JOINDRE UN CLIENT</option>
+                  <option *ngFor="let user of dataClient" value="/api/aulaamas/users/{{ user.id }}">
+                    {{ user.prenom }} {{ user.nom }}
+                  </option>
+                </select>
+                <span
+                  class="login-erreur"
+                  *ngIf="erreuruser != ''"
+                >
+                  {{ erreuruser }}
+                </span>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="exampleInputEmail1">NOM</label>
-                <input type="email" class="form-control" placeholder="SARR" />
+                <label for="exampleInputEmail1">LIBELLE DE LA COMMANDE</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="nomCommande"
+                />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurnomCommande != ''"
+                >
+                  {{ erreurnomCommande }}
+                </span>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Type et Taille du Tissu</label>
-                <input
-                  type="text"
+                <label>TYPE DE TISSU</label>
+                <select
                   class="form-control"
-                  placeholder="ecrire ici"
-                />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>COULEUR</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="écrire ici"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>MODEL</label>
-                <!-- <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Company"
-                  value="Tandance Korité"
-                /> -->
-                <select name="model" id="model" class="form-control">
-                  <option value="">MODE MAGAL</option>
-                  <option value="">MODE GAMOU</option>
-                  <option value="">TANDANCE TABASKI</option>
-                  <option value="">TANDANCE KORITE</option>
+                  formControlName="typeDeTissuClient"
+                >
+                  <option value="">CHOISIR TYPE DE TISSU</option>
+                  <option value="wax">WAX</option>
+                  <option value="bazin">BAZIN</option>
                 </select>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>PRIX</label>
+                <label>COULEUR DE TISSU</label>
                 <input
                   type="text"
+                  formControlName="couleurTissuClient"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="25.OOfr"
                 />
               </div>
             </div>
           </div>
           <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>TAILLE DU TISSU</label>
+                <input
+                  type="text"
+                  formControlName="tailleTissuClient"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>MODEL</label>
+                <select formControlName="model" class="form-control">
+                  <option value="">CHOISIR</option>
+                  <option *ngFor="let model of dataModel" value="/api/aulaamas/models/{{model.id}}">{{model.libelle}}</option>
+                </select>
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurmodel != ''"
+                >
+                  {{ erreurmodel }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>PRIX</label>
+                <input
+                  type="text"
+                  formControlName="prix"
+                  class="form-control"
+                />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurprix != ''"
+                >
+                  {{ erreurprix }}
+                </span>
+              </div>
+            </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>AVANCE</label>
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Company"
-                  value="10.000"
+                  formControlName="avance"
                 />
               </div>
             </div>
+          </div>
+          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label>RELICAT</label>
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Last Name"
-                  value="150.OOfr"
+                  formControlName="relicat"
                 />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>DATE DE LA COMMANDE</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="dateCommande"
+                />
+                <span
+                  class="login-erreur"
+                  *ngIf="erreurdateCommande != ''"
+                >
+                  {{ erreurdateCommande }}
+                </span>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">
+              <button
+                type="submit"
+                (click)="ajoutNouveauCommande()"
+                class="btn btn-primary btn-round"
+              >
                 ENREGISTRER
               </button>
             </div>

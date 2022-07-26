@@ -8,3 +8,11 @@ input {
 label {
   font-size: 16px;
 }
+.alert{
+  font-size: 26px;
+  text-align: center;
+}
+.login-erreur{
+  color: red;
+  font-size: 16px;
+}

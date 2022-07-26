@@ -5,7 +5,7 @@
         <h2 class="card-title">DETAIL INFORMTION DEPENSE</h2>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="addForm">
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -14,8 +14,7 @@
                   type="text"
                   class="form-control"
                   disabled=""
-                  placeholder="Company"
-                  value="00012"
+                  formControlName="id"
                 />
               </div>
             </div>
@@ -26,8 +25,7 @@
                   disabled=""
                   type="text"
                   class="form-control"
-                  placeholder="Username"
-                  value="FACTURE"
+                  formControlName="type"
                 />
               </div>
             </div>
@@ -38,9 +36,9 @@
                 <label for="exampleInputEmail1">LIBELLE</label>
                 <input
                   disabled=""
-                  type="email"
+                  type="text"
                   class="form-control"
-                  placeholder="WOYAFAL"
+                  formControlName="libelle"
                 />
               </div>
             </div>
@@ -51,8 +49,7 @@
                   type="text"
                   class="form-control"
                   disabled=""
-                  placeholder="Username"
-                  value="50.000"
+                  formControlName="prix"
                 />
               </div>
             </div>
@@ -65,8 +62,7 @@
                   type="text"
                   disabled=""
                   class="form-control"
-                  placeholder="Company"
-                  value="19/09/2022"
+                  formControlName="date"
                 />
               </div>
             </div>
@@ -77,8 +73,7 @@
                   type="text"
                   disabled=""
                   class="form-control"
-                  placeholder="Last Name"
-                  value="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam voluptatum sit, possimus facilis quidem"
+                  formControlName="description"
                 />
               </div>
             </div>
