@@ -5,13 +5,14 @@
         <h2 class="card-title">MODIFIER INFORMATION CLIENT</h2>
       </div>
       <div class="card-body">
-        <form [formGroup]="addForm">
+       <form [formGroup]="addForm">
           <div class="alert alert-danger" role="alert" *ngIf="erreur!=''">
             {{ erreur }}
           </div><br>
           <div class="alert alert-success" role="alert" *ngIf="success!=''">
             {{ success }}
           </div><br>
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">

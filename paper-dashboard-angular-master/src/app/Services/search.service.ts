@@ -9,7 +9,7 @@ export class SearchService {
   private StringSource= new BehaviorSubject('');
   currentSearch=this.StringSource.asObservable();
   constructor() { }
-  changeValue(message: string){
+  changeValue(message: any){
     this.StringSource.next(message)
   }
 }

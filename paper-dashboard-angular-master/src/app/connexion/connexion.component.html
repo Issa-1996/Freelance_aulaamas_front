@@ -1,37 +1,55 @@
 <div class="container">
   <div class="screen">
     <div class="screen__content">
-      <form class="login" [formGroup]="addForm">
-        <span style="color: red; font-size: 12px; margin-left: -5%;" *ngIf="erreur != ''">
+      <div class="text-center">
+        <img
+          src="../../assets/img/aulaamas.jpg"
+          width="100"
+        /> <br>
+        <span>AULAAMAS DAROU SALAM</span><br>
+        <span
+          style="color: red; font-size: 20px; margin-left: -5%"
+          *ngIf="erreur != ''"
+        >
           {{ erreur }}
         </span>
-        <div class="login__field">
-          <input
-            type="text"
-            class="login__input"
-            placeholder="Email / N° Téléphone"
-            formControlName="username"
-            name="username"
-          />
+      </div>
+      <form class="login" [formGroup]="addForm">
+        <div class="form-group">
+          <div class="login__field">
+            <input
+              type="text"
+              class="login__input"
+              placeholder="Email / N° Téléphone"
+              formControlName="username"
+              name="username"
+            />
+          </div>
+          <span
+            style="color: red; font-size: 16px"
+            *ngIf="erreurUsername != ''"
+          >
+            {{ erreurUsername }}
+          </span>
+          <div class="login__field">
+            <input
+              type="password"
+              class="login__input"
+              placeholder="Mot de Passe"
+              formControlName="password"
+              name="password"
+            />
+          </div>
+          <span
+            style="color: red; font-size: 16px"
+            *ngIf="erreurPassword != ''"
+          >
+            {{ erreurPassword }}
+          </span>
+          <button class="button login__submit text-center" (click)="onSignIn()">
+            CONNEXION
+          </button>
         </div>
-        <span style="color: red; font-size: 12px" *ngIf="erreurUsername != ''">
-          {{ erreurUsername }}
-        </span>
-        <div class="login__field">
-          <input
-            type="password"
-            class="login__input"
-            placeholder="Mot de Passe"
-            formControlName="password"
-            name="password"
-          />
-        </div>
-        <span style="color: red; font-size: 12px" *ngIf="erreurPassword != ''">
-          {{ erreurPassword }}
-        </span>
-        <button class="button login__submit" (click)="onSignIn()">
-          <span class="button__text">CONNEXION</span>
-        </button>
       </form>
       <div class="social-login">
         <h3>AUTHENTIFICATION</h3>

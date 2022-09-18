@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { BehavioSubjetService } from "app/Services/behavio-subjet.service";
 import { MethodeUsersService } from "app/Services/methode-users.service";
+import { SearchService } from "app/Services/search.service";
 
 @Component({
   selector: "ajout-client",
@@ -15,13 +16,16 @@ export class AjoutClientComponent implements OnInit {
   erreurtelephone = "";
   erreur = "";
   success = "";
+  search: string;
   constructor(
+    private searchVS: SearchService,
     private formBuilder: FormBuilder,
     private methodeClient: MethodeUsersService,
     private behavioSubjet: BehavioSubjetService
   ) {}
 
   ngOnInit(): void {
+    this.searchVS.currentSearch.subscribe(search=>this.search=search);
     this.addForm = this.formBuilder.group({
       prenom: ["", Validators.required],
       nom: ["", Validators.required],
@@ -75,7 +79,8 @@ export class AjoutClientComponent implements OnInit {
       (data) => {
         this.erreur="";
         this.success = "NOUVEAU CLIENT AJOUTER AVEC SUCCESS";
-        this.behavioSubjet.setValue(data);        
+        // this.behavioSubjet.setValue(data);    
+        this.newValue(data);      
       },
       (error) => {
         // @ts-ignore
@@ -87,5 +92,8 @@ export class AjoutClientComponent implements OnInit {
         }
       }
     );
+  }
+  newValue(search){
+    this.searchVS.changeValue(search);
   }
 }

@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  Renderer2,
   ViewChild,
   ElementRef,
 } from "@angular/core";
@@ -9,6 +8,7 @@ import { ROUTES } from "../../sidebar/sidebar.component";
 import { Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { MethodeUsersService } from "app/Services/methode-users.service";
 
 @Component({
   moduleId: module.id,
@@ -27,10 +27,12 @@ export class NavbarComponent implements OnInit {
 
   decodedToken: any;
   helper = new JwtHelperService();
-  public role: any[];
+  public username: any[];
+  prenom:any;
+  nom:any;
   constructor(
     location: Location,
-    private renderer: Renderer2,
+    private methodeClient: MethodeUsersService,
     private element: ElementRef,
     private router: Router
   ) {
@@ -40,9 +42,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.decodedToken = this.helper.decodeToken(localStorage.getItem("token"));
-    this.role = this.decodedToken;
-    
+    this.getUserConnecte();    
 
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
     var navbar: HTMLElement = this.element.nativeElement;
@@ -50,6 +50,14 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.sidebarClose();
     });
+  }
+  getUserConnecte(){
+    this.decodedToken = this.helper.decodeToken(localStorage.getItem("token"));
+    this.username = this.decodedToken.username;
+    this.methodeClient.getUserConnected(this.username).subscribe((data)=>{
+      this.prenom = data["hydra:member"][0]["prenom"];
+      this.nom = data["hydra:member"][0]["nom"];
+    })
   }
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());

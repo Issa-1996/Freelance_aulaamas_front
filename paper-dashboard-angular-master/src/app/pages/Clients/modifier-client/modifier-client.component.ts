@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientModele } from 'app/Modeles/ClientModele';
 import { BehavioSubjetService } from 'app/Services/behavio-subjet.service';
 import { MethodeUsersService } from 'app/Services/methode-users.service';
+import { SearchService } from 'app/Services/search.service';
 import { TransferDataService } from 'app/Services/transfer-data.service';
 
 @Component({
@@ -19,14 +20,18 @@ export class ModifierClientComponent implements OnInit {
   erreur = "";
   success = "";
   data: ClientModele;
+  search: string;
+
   constructor(
+    private searchVS: SearchService,
     private transferData: TransferDataService,
     private formBuilder: FormBuilder,
     private behavioSubjet: BehavioSubjetService,
     private methodeClient: MethodeUsersService
   ) { }
-
+  
   ngOnInit(): void {    
+    this.searchVS.currentSearch.subscribe(search=>this.search=search);
     this.addForm = this.formBuilder.group({
       id:[""],
       prenom: ["", Validators.required],
@@ -82,7 +87,8 @@ export class ModifierClientComponent implements OnInit {
       (data) => {
         this.erreur="";
         this.success = "CLIENT MODIFIER AVEC SUCCESS";
-        this.behavioSubjet.setValue(data);        
+        // this.behavioSubjet.setValue(data);  
+        this.newValue(data);      
       },
       (error) => {
         // @ts-ignore
@@ -96,5 +102,8 @@ export class ModifierClientComponent implements OnInit {
         }
       }
     );
+  }
+  newValue(search){
+    this.searchVS.changeValue(search);
   }
 }

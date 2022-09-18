@@ -18,7 +18,6 @@ import { ModifierClientComponent } from "../modifier-client/modifier-client.comp
   styleUrls: ["./gestion-clients.component.css"],
 })
 export class GestionClientsComponent implements AfterViewInit, OnInit {
-  
   dataClient: ClientModele[] = [];
   public role: any[];
   helper = new JwtHelperService();
@@ -30,20 +29,15 @@ export class GestionClientsComponent implements AfterViewInit, OnInit {
     private behavioSubjet: BehavioSubjetService,
     private transferData: TransferDataService,
     private searchVS: SearchService
-    ) {}
-    ngOnInit(): void {
-      const decodedToken = this.helper.decodeToken(localStorage.getItem("token"));
-      this.role = decodedToken.roles;
-      this.dataSource.paginator = this.paginator;
-      this.listeClients();
-      this.searchVS.currentSearch.subscribe(search=>this.search=search);
-    }
-    newValue(search){
-      this.searchVS.changeValue(search);
-    }
-    detailInfoClient(element: any) {
-      const dialogRef = this.dialog.open(DetailClientComponent);
-
+  ) {}
+  ngOnInit(): void {
+    const decodedToken = this.helper.decodeToken(localStorage.getItem("token"));
+    this.role = decodedToken.roles;
+    this.dataSource.paginator = this.paginator;
+    this.listeClients();
+  }
+  detailInfoClient(element: any) {
+    const dialogRef = this.dialog.open(DetailClientComponent);
     this.transferData.setData(element);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -51,7 +45,6 @@ export class GestionClientsComponent implements AfterViewInit, OnInit {
   }
   modifierInfoClient(element: any) {
     const dialogRef = this.dialog.open(ModifierClientComponent);
-    
     this.transferData.setData(element);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -65,13 +58,31 @@ export class GestionClientsComponent implements AfterViewInit, OnInit {
     });
   }
   listeClients() {
-    this.methodeClient.getAllClient().subscribe((data) => {
+    var compt=0;
+    this.methodeClient.getAllClient().subscribe((data) => {      
       this.dataClient = data["hydra:member"];
-      this.behavioSubjet.getValue().subscribe((d) => {
-        if (d.length != 0) {
-          this.dataClient.push(d);
-        }
-      });
+      for (let index = 0; index < this.dataClient.length; index++) {
+        this.searchVS.currentSearch.subscribe((data: any) => {
+          if (this.dataClient[index]["id"] == data["id"]) {
+            this.dataClient[index] = data;
+            this.dataSource = new MatTableDataSource<ClientModele>(this.dataClient);
+            this.dataSource.paginator = this.paginator;
+          }else{  
+            if((data.length!=0)){
+              if(this.dataClient.includes(data)){
+                // console.log("OUIIII");
+              }else if(!this.dataClient.includes(data)){
+                compt++;
+              }
+            }
+          }
+          if(compt==this.dataClient.length){
+            this.dataClient[index+1] = data;
+            this.dataSource = new MatTableDataSource<ClientModele>(this.dataClient);
+            this.dataSource.paginator = this.paginator;        
+          }
+        });
+      }
       this.dataSource = new MatTableDataSource<ClientModele>(this.dataClient);
       this.dataSource.paginator = this.paginator;
     });
